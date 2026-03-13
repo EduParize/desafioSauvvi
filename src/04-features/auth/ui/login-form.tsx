@@ -1,18 +1,27 @@
-import React from 'react';
-import { View, Button, ActivityIndicator } from 'react-native';
-import { useAuthStore } from '../model/use-auth-store';
-import { Icon } from '../../../shared/lib/icon-adapter'; // Usando o Adapter!
+import React from "react";
+import { View, Button, ActivityIndicator } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useAuthStore } from "../model/use-auth-store";
 
 export const LoginForm = () => {
   const { login, isLoading } = useAuthStore();
+  const navigation = useNavigation<any>();
+
+  const handleLogin = async () => {
+    await login({});
+    navigation.replace("Home");
+  };
 
   return (
-    <View>
-      <Icon name="User" color="blue" />
+    <View style={{ marginTop: 20 }}>
       {isLoading ? (
-        <ActivityIndicator />
+        <ActivityIndicator size="large" color="#9b1b1b" />
       ) : (
-        <Button title="Entrar no Sistema" onPress={() => login({})} />
+        <Button
+          title="Entrar no Sistema"
+          color="#9b1b1b"
+          onPress={handleLogin}
+        />
       )}
     </View>
   );
