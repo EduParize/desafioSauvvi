@@ -76,7 +76,7 @@ Tests that validate complete user journeys (crossing multiple layers) must be is
 
 ---
 
-## 5. Codex / AI Contribution Checklist ✅
+## 5. Codex Contribution Checklist ✅
 
 When generating or editing code in this repository, **always**:
 
