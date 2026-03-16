@@ -1,14 +1,19 @@
 {
-    "compilerOptions": {
-      "allowJs": true,
-      "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true,
-      "isolatedModules": true,
-      "jsx": "react-native",
-      "lib": ["esnext"],
-      "moduleResolution": "node",
-      "noEmit": true,
-      "strict": true,
-      "target": "esnext"
-    }
-  }
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": [
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "moduleResolution": "bundler", 
+    "customConditions": ["react-native"]
+  },
+  "extends": "expo/tsconfig.base"
+}

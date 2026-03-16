@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface AuthState {
   user: any | null;
@@ -12,10 +12,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (credentials) => {
     set({ isLoading: true });
     try {
-      // Aqui chamaria o src/features/auth/api
-      // Simulando delay da API da SauvviTech
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      set({ user: { name: 'Eduardo' }, isLoading: false });
+      set({ user: { name: "Eduardo" }, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
     }
