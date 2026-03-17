@@ -3,7 +3,6 @@
     "@conarti/eslint-plugin-feature-sliced": "^1.0.5",
     "@eslint/compat": "^2.0.3",
     "@eslint/js": "^9.0.0",
-    "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.2.14",
@@ -36,7 +35,7 @@
   },
   "scripts": {
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "test": "jest",
+    "test": "jest --config jest/jest.config.js",
     "test:coverage": "jest --coverage",
     "start": "expo start",
     "android": "expo start --android",
