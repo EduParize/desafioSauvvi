@@ -1,0 +1,38 @@
+name: Front-End CI/CD (FSD Architecture)
+
+# O pipeline vai rodar sempre que houver um push na branch main 
+# ou quando alguém abrir um Pull Request
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Validação de Arquitetura e Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Copia o código do repositório
+      - name: 📥 Checkout do Código
+        uses: actions/checkout@v4
+
+      # 2. Prepara o Node.js
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Versão estável ideal para o Expo 55
+          cache: 'yarn'
+
+      # 3. Instala as bibliotecas
+      - name: 📦 Instalar Dependências
+        run: yarn install --frozen-lockfile
+
+      # 4. A Polícia da Arquitetura em ação
+      - name: 🛡️ Validar Regras FSD (ESLint)
+        run: yarn lint
+
+      # 5. A Fundação de Testes em ação
+      - name: 🧪 Correr Testes de Negócio (Jest)
+        run: yarn test
