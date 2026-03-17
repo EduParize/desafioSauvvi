@@ -1,24 +1,22 @@
 module.exports = {
-  preset: 'jest-expo', // Se for React Native puro sem Expo, mude para 'react-native'
-  
-  // Ensina o Jest a entender os nossos caminhos absolutos (o alias @/)
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1', 
+  preset: "jest-expo",
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+
+  // Força o Jest a usar o Babel para traduzir os ficheiros do React Native e Expo
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
   },
-  
-  // Ignora o E2E, pois o Jest é apenas para testes unitários e de integração
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/e2e/', 
+
+  // O nosso apelido da arquitetura FSD (@/)
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+
+  // A lista rigorosa das bibliotecas que OBRIGATORIAMENTE precisam de ser traduzidas pelo Babel
+  transformIgnorePatterns: [
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
   ],
-  
-  // Força o Jest a procurar os ficheiros de teste APENAS co-localizados dentro do src
-  testMatch: [
-    '**/src/**/*.test.(ts|tsx)'
-  ],
-  
-  // Prepara ferramentas extras da Testing Library
-  setupFilesAfterEnv: [
-    '@testing-library/react-native/extend-expect'
-  ],
+
+  testMatch: ["**/src/**/*.test.(ts|tsx)"],
 };

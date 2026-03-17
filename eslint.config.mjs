@@ -37,6 +37,7 @@ export default tseslint.config(
       'node_modules/**',
       'babel.config.js',
       'jest.config.js',
+      'jest.setup.js',
       'e2e/**', 
       'dist/**',
     ],
