@@ -13,7 +13,11 @@
     "strict": true,
     "target": "esnext",
     "moduleResolution": "bundler", 
-    "customConditions": ["react-native"]
+    "customConditions": ["react-native"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "extends": "expo/tsconfig.base"
 }
