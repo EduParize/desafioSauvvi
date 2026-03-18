@@ -11,7 +11,7 @@ export const HomeScreen = () => {
       <HeaderWidget />
       
       <View style={styles.content}>
-        <Text>Welcome to the FSD architecture!</Text>
+        <Text>Hello world!</Text>
       </View>
     </View>
   );
