@@ -15,6 +15,14 @@ export default tseslint.config(
       // A MÁGICA ACONTECE AQUI: O tradutor conserta o erro do getFilename!
       '@conarti/feature-sliced': fixupPluginRules(featureSlicedPlugin),
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+          alwaysTryTypes: true,
+        },
+      },
+    },
     rules: {
       ...featureSlicedPlugin.configs.recommended.rules,
 
@@ -39,6 +47,7 @@ export default tseslint.config(
       'jest/**',
       'e2e/**', 
       'dist/**',
+      'prettier.config.js',
     ],
   }
 );
