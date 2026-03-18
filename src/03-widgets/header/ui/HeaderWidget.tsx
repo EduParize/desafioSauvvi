@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-// MÁGICA 2: O Widget orquestra a Feature e a Entidade!
+
+// MAGIC 2: The Widget orchestrates the Feature and the Entity!
 import { LoginButton } from '@/04-features/auth';
 import { UserAvatar } from '@/05-entities/user';
 
 export const HeaderWidget = () => {
-  // Num projeto real, isto viria do Zustand ou Contexto
+  // In a real project, this state would come from Zustand, Redux, or Context API
   const [isLogged] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>MeuApp</Text>
+      <Text style={styles.logo}>MyApp</Text>
       
-      {/* Se quiser testar o avatar, mude o isLogged para true */}
-      {isLogged ? <UserAvatar name="Usuário" /> : <LoginButton />}
+      {/* If you want to test the avatar, change isLogged to true */}
+      {isLogged ? <UserAvatar name="User" /> : <LoginButton />}
     </View>
   );
 };

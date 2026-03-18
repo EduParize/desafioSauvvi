@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+
+// Importing from the Widget's front door!
 import { HeaderWidget } from '@/03-widgets/header';
 
 export const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      {/* A página não sabe como o login funciona, ela apenas chama o Header */}
+      {/* The page doesn't know how login works, it just calls the Header */}
       <HeaderWidget />
       
       <View style={styles.content}>
-        <Text>Bem-vindo à arquitetura FSD!</Text>
+        <Text>Welcome to the FSD architecture!</Text>
       </View>
     </View>
   );
