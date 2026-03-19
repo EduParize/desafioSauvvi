@@ -3,40 +3,40 @@ import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { Alert } from 'react-native';
 import { LoginButton } from './LoginButton';
 
-// 1. Importamos a nossa requisição isolada da camada de API
+// 1. We import our isolated request from the API layer
 import { loginRequest } from '../api/loginRequest';
 
-// 2. MÁGICA: Pedimos ao Jest para intercetar este ficheiro e NÃO fazer chamadas reais para a internet!
+// 2. MAGIC: We ask Jest to intercept this file and NOT make real internet calls!
 jest.mock('../api/loginRequest');
 
-// Dizemos ao Jest para "espiar" tudo o que acontece com o Alert do React Native
+// We tell Jest to "spy" on everything that happens with the React Native Alert
 jest.spyOn(Alert, 'alert');
 
 describe('Auth Feature - LoginButton', () => {
   beforeEach(() => {
-    // Limpa a memória dos nossos espiões antes de cada teste
+    // Clears the memory of our spies before each test
     jest.clearAllMocks();
   });
 
-  it('deve renderizar corretamente com o texto "Login"', () => {
+  it('should render correctly with the text "Login"', () => {
     const { getByText } = render(<LoginButton />);
     expect(getByText('Login')).toBeTruthy();
   });
 });
 
 describe('When the user presses the login button', () => {
-  it('deve mostrar mensagem de sucesso quando a API responder OK', async () => {
-    // 3. Configuramos o mock para simular que o servidor respondeu com sucesso!
+  it('should show success message when API responds OK', async () => {
+    // 3. We configure the mock to simulate that the server responded successfully!
     (loginRequest as jest.Mock).mockResolvedValueOnce({
       token: 'fake-jwt-token',
     });
 
     const { getByText } = render(<LoginButton />);
 
-    // Simula o clique
+    // Simulates the click
     fireEvent.press(getByText('Login'));
 
-    // 4. Como a função é async, o teste agora tem de ESPERAR (waitFor) pelo Alert
+    // 4. Since the function is async, the test now has to WAIT (waitFor) for the Alert
     await waitFor(() => {
       expect(Alert.alert).toHaveBeenCalledWith(
         'Success',
@@ -47,8 +47,8 @@ describe('When the user presses the login button', () => {
 });
 
 describe('When the user presses the login button and the API fails', () => {
-  it('deve mostrar mensagem de erro quando a API falhar', async () => {
-    // 5. Configuramos o mock para simular que a internet caiu ou o servidor deu erro 500
+  it('should show error message when API fails', async () => {
+    // 5. We configure the mock to simulate that the internet went down or the server gave a 500 error
     (loginRequest as jest.Mock).mockRejectedValueOnce(
       new Error('Network Error'),
     );
@@ -57,7 +57,7 @@ describe('When the user presses the login button and the API fails', () => {
 
     fireEvent.press(getByText('Login'));
 
-    // Esperamos o catch() do componente ser ativado
+    // We wait for the component's catch() to be triggered
     await waitFor(() => {
       expect(Alert.alert).toHaveBeenCalledWith(
         'Error',
